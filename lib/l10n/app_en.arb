@@ -1,0 +1,75 @@
+{
+  "@@locale": "en",
+  "account": "Account",
+  "notifications": "Notifications",
+  "notificationsUnavailable": "Notifications are not available yet.",
+  "shipper": "Shipper",
+  "accountSection": "ACCOUNT",
+  "profileCompany": "Profile & company",
+  "teamAccess": "Team access",
+  "teamAccessUnavailable": "Team access is not available yet.",
+  "favoriteCarriers": "Favorite carriers",
+  "favoriteCarriersUnavailable": "Favorite carriers are not available yet.",
+  "preferences": "PREFERENCES",
+  "language": "Language",
+  "appearance": "Appearance",
+  "integrations": "Integrations",
+  "integrationsUnavailable": "Integrations are not available yet.",
+  "supportFeedback": "SUPPORT & FEEDBACK",
+  "helpCenter": "Help center",
+  "helpCenterUnavailable": "Help center is not available yet.",
+  "requestFeature": "Request a feature",
+  "featureRequestsUnavailable": "Feature requests are not available yet.",
+  "legalSecurity": "LEGAL & SECURITY",
+  "securityPassword": "Security & password",
+  "termsPrivacy": "Terms · Privacy policy",
+  "legalUnavailable": "Legal documents are not available yet.",
+  "signOut": "Sign out",
+  "deleteAccount": "Delete account",
+  "profileUpdated": "Profile updated.",
+  "couldNotUpdateProfile": "Could not update profile: {error}",
+  "@couldNotUpdateProfile": {
+    "placeholders": { "error": { "type": "String" } }
+  },
+  "fullName": "Full name",
+  "enterName": "Enter your name",
+  "companyName": "Company name",
+  "cancel": "Cancel",
+  "save": "Save",
+  "system": "System",
+  "light": "Light",
+  "dark": "Dark",
+  "systemDefault": "System default",
+  "english": "English",
+  "nepali": "नेपाली",
+  "hindi": "हिन्दी",
+  "resetPassword": "Reset password",
+  "resetPasswordExplanation": "Firebase will send a secure password reset link to {email}. OTP-based password recovery is not available for this account.",
+  "@resetPasswordExplanation": {
+    "placeholders": { "email": { "type": "String" } }
+  },
+  "sendLink": "Send link",
+  "passwordResetLinkSent": "Password reset link sent to {email}.",
+  "@passwordResetLinkSent": {
+    "placeholders": { "email": { "type": "String" } }
+  },
+  "couldNotSendResetLink": "Could not send reset link: {error}",
+  "@couldNotSendResetLink": {
+    "placeholders": { "error": { "type": "String" } }
+  },
+  "signOutQuestion": "Sign out?",
+  "signBackInAnytime": "You can sign back in at any time.",
+  "couldNotSignOut": "Could not sign out: {error}",
+  "@couldNotSignOut": {
+    "placeholders": { "error": { "type": "String" } }
+  },
+  "deleteAccountQuestion": "Delete account?",
+  "deleteAccountWarning": "This permanently deletes your account and profile. This action cannot be undone.",
+  "typeDeleteToConfirm": "Type DELETE to confirm",
+  "couldNotDeleteAccount": "Could not delete account: {error}",
+  "@couldNotDeleteAccount": {
+    "placeholders": { "error": { "type": "String" } }
+  },
+  "adminRole": "Admin",
+  "carrierRole": "Carrier"
+}

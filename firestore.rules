@@ -1,0 +1,132 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isShipper() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid))
+          .data.get('role', 'shipper') == 'shipper';
+    }
+
+    function isCarrier() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid))
+          .data.get('role', 'shipper') == 'carrier';
+    }
+
+    function isDemoAssessmentBid(bid) {
+      return bid is map
+        && bid.keys().hasOnly([
+          'id',
+          'carrier',
+          'fare',
+          'rating',
+          'deliveryDays'
+        ])
+        && (
+          (bid.id == 'himalayan-cargo'
+            && bid.carrier == 'Himalayan Cargo'
+            && bid.fare == 32000
+            && bid.rating == 4.6
+            && bid.deliveryDays == 2)
+          ||
+          (bid.id == 'swift-transport'
+            && bid.carrier == 'Swift Transport'
+            && bid.fare == 29500
+            && bid.rating == 4.1
+            && bid.deliveryDays == 3)
+        );
+    }
+
+    function isAcceptingBid() {
+      return isShipper()
+        && resource.data.createdBy == request.auth.uid
+        && resource.data.status in ['pending', 'awaiting_bids']
+        && request.resource.data.status == 'scheduled'
+        && request.resource.data.acceptedBid is map
+        && (
+          resource.data.get('bids', []).hasAny([
+            request.resource.data.acceptedBid
+          ])
+          || (resource.data.get('bids', []).size() == 0
+            && isDemoAssessmentBid(request.resource.data.acceptedBid))
+        )
+        && request.resource.data.assignedCarrier
+          == request.resource.data.acceptedBid.carrier
+        && request.resource.data.expectedFare
+          == request.resource.data.acceptedBid.fare
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'acceptedBid',
+          'assignedCarrier',
+          'expectedFare',
+          'status',
+          'updatedAt'
+        ]);
+    }
+
+    match /users/{userId} {
+      allow read: if signedIn() && request.auth.uid == userId;
+      allow create: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.get('role', 'shipper') in ['shipper', 'carrier'];
+      allow update: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.get('role', resource.data.get('role', 'shipper'))
+          == resource.data.get('role', 'shipper')
+        && request.resource.data.get('activeBidCount', 0)
+          == resource.data.get('activeBidCount', 0);
+      allow delete: if signedIn() && request.auth.uid == userId;
+    }
+
+    match /phone_login_lookup/{phoneNumber} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if request.auth != null
+        && request.auth.uid == request.resource.data.uid
+        && request.resource.data.email == request.auth.token.email;
+      allow update: if request.auth != null
+        && request.auth.uid == resource.data.uid
+        && request.auth.uid == request.resource.data.uid
+        && request.resource.data.email == request.auth.token.email;
+      allow delete: if request.auth != null
+        && request.auth.uid == resource.data.uid;
+    }
+
+    match /otp_verifications/{email} {
+      // ponytail: allow write for OTP generation during signup/login
+      allow read, write: if true;
+    }
+
+    match /shipments/{shipmentId} {
+      allow read: if (isShipper()
+          && resource.data.createdBy == request.auth.uid)
+        || (isCarrier()
+          && resource.data.status in ['pending', 'awaiting_bids']);
+      allow create: if isShipper()
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.get('bids', []) == []
+        && request.resource.data.get('bidCount', 0) == 0
+        && request.resource.data.get('acceptedBid', null) == null
+        && request.resource.data.get('assignedCarrier', null) == null;
+      allow update: if isShipper()
+        && resource.data.createdBy == request.auth.uid
+        && request.resource.data.reference == resource.data.reference
+        && request.resource.data.bids == resource.data.bids
+        && request.resource.data.bidCount == resource.data.bidCount
+        && request.resource.data.get('acceptedBid', null)
+          == resource.data.get('acceptedBid', null)
+        && request.resource.data.get('assignedCarrier', null)
+          == resource.data.get('assignedCarrier', null)
+        || isAcceptingBid();
+      allow delete: if isShipper()
+        && resource.data.createdBy == request.auth.uid;
+    }
+
+  }
+}

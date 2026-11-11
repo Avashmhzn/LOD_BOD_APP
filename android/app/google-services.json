@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "214882516292",
+    "project_id": "lod-bod-app",
+    "storage_bucket": "lod-bod-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214882516292:android:bf1d8de703a36aa4af6b11",
+        "android_client_info": {
+          "package_name": "com.example.lodbod_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214882516292-fkcbnb38ddbjb5jbsn6j4p96qo22d11l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsT-ZTbGjp66-jQCKE3ulRUT7-J7VzwgU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214882516292-fkcbnb38ddbjb5jbsn6j4p96qo22d11l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "214882516292-284gtldutha05johgqt195jgprmjet5u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lodbodApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

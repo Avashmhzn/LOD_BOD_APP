@@ -1,0 +1,43 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "lod-bod-app",
+          "appId": "1:214882516292:android:bf1d8de703a36aa4af6b11",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "lod-bod-app",
+          "configurations": {
+            "android": "1:214882516292:android:bf1d8de703a36aa4af6b11",
+            "ios": "1:214882516292:ios:450b4984e123519caf6b11",
+            "macos": "1:214882516292:ios:450b4984e123519caf6b11",
+            "web": "1:214882516292:web:c2e08b91c332b604af6b11",
+            "windows": "1:214882516292:web:87a45fed568b6827af6b11"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "disallowLegacyRuntimeConfig": true,
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": []
+    }
+  ]
+}
