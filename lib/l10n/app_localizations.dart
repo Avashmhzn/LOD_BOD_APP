@@ -11,24 +11,8 @@ import 'app_localizations_ne.dart';
 
 // ignore_for_file: type=lint
 
-/// Callers can lookup localized strings with an instance of AppLocalizations
-/// returned by `AppLocalizations.of(context)`.
-///
-/// Applications need to include `AppLocalizations.delegate()` in their app's
-/// `localizationDelegates` list, and the locales they support in the app's
-/// `supportedLocales` list. For example:
-///
-/// ```dart
-/// import 'l10n/app_localizations.dart';
-///
-/// return MaterialApp(
-///   localizationsDelegates: AppLocalizations.localizationsDelegates,
-///   supportedLocales: AppLocalizations.supportedLocales,
-///   home: MyApplicationHome(),
-/// );
-/// ```
-///
-/// ## Update pubspec.yaml
+
+///  Update pubspec.yaml
 ///
 /// Please make sure to update your pubspec.yaml to include the following
 /// packages:
@@ -39,29 +23,6 @@ import 'app_localizations_ne.dart';
 ///   flutter_localizations:
 ///     sdk: flutter
 ///   intl: any # Use the pinned version from flutter_localizations
-///
-///   # Rest of dependencies
-/// ```
-///
-/// ## iOS Applications
-///
-/// iOS applications define key application metadata, including supported
-/// locales, in an Info.plist file that is built into the application bundle.
-/// To configure the locales supported by your app, you’ll need to edit this
-/// file.
-///
-/// First, open your project’s ios/Runner.xcworkspace Xcode workspace file.
-/// Then, in the Project Navigator, open the Info.plist file under the Runner
-/// project’s Runner folder.
-///
-/// Next, select the Information Property List item, select Add Item from the
-/// Editor menu, then select Localizations from the pop-up menu.
-///
-/// Select and expand the newly-created Localizations item then, for each
-/// locale your application supports, add a new item and select the locale
-/// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the AppLocalizations.supportedLocales
-/// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale)
     : localeName = intl.Intl.canonicalizedLocale(locale.toString());
@@ -75,16 +36,7 @@ abstract class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
 
-  /// A list of this localizations delegate along with the default localizations
-  /// delegates.
-  ///
-  /// Returns a list of localizations delegates containing this delegate along with
-  /// GlobalMaterialLocalizations.delegate, GlobalCupertinoLocalizations.delegate,
-  /// and GlobalWidgetsLocalizations.delegate.
-  ///
-  /// Additional delegates can be added by appending to this list in
-  /// MaterialApp. This list does not have to be used at all if a custom list
-  /// of delegates is preferred or required.
+  
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
         delegate,
@@ -100,34 +52,30 @@ abstract class AppLocalizations {
     Locale('ne'),
   ];
 
-  /// No description provided for @account.
-  ///
-  /// In en, this message translates to:
-  /// **'Account'**
+  // No description provided for @account.
+
+  // In en, this message translates to:
+  // **'Account'**
   String get account;
 
-  /// No description provided for @notifications.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications'**
+  // No description provided for @notifications
+  // In en, this message translates to:
+  // **'Notifications'**
   String get notifications;
 
-  /// No description provided for @notificationsUnavailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications are not available yet.'**
+  // No description provided for @notificationsUnavailable.
+  // In en, this message translates to:
+  // **'Notifications are not available yet.'**
   String get notificationsUnavailable;
 
-  /// No description provided for @shipper.
-  ///
-  /// In en, this message translates to:
+  // No description provided for @shipper.
+  // In en, this message translates to:
   /// **'Shipper'**
   String get shipper;
 
-  /// No description provided for @accountSection.
-  ///
-  /// In en, this message translates to:
-  /// **'ACCOUNT'**
+  // No description provided for @accountSection.
+  // In en, this message translates to:
+  // **'ACCOUNT'**
   String get accountSection;
 
   /// No description provided for @profileCompany.
@@ -443,7 +391,6 @@ class _AppLocalizationsDelegate
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-  // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
