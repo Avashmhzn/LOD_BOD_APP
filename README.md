@@ -2,8 +2,7 @@
 
 LODBOD is a Flutter mobile app prototype for shippers to create and track loads,
 review carrier bids, and manage shipment requests. It uses Firebase for account
-authentication and shipment data, with Hive as a local shipment cache. It is
-not a mock-only or offline-first application.
+authentication and shipment data, with Hive as a local shipment cache.
 
 ## Prerequisites
 
