@@ -23,7 +23,6 @@ class ShipmentRepositoryImpl implements ShipmentRepository {
   @override
   Future<Either<Failure, List<ShipmentEntity>>> getShipments() async {
     try {
-      // Always try cache first (instant response)
       final cachedShipments = await localDataSource.getCachedShipments();
 
       // Check network
